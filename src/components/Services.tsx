@@ -1,4 +1,4 @@
-import { Bot, BrainCircuit, Server, Zap, Mic, Database } from 'lucide-react';
+import { BrainCircuit, Server, Mic } from 'lucide-react';
 
 const Services = () => {
     const services = [

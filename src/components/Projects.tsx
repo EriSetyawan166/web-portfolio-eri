@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import patunganajaImage from '../assets/patunganaja.jpeg'
 import rayspeedImage from '../assets/rayspeed.jpeg'
 
