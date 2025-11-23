@@ -34,9 +34,6 @@ const Projects = () => {
                         <span className="text-[#FF7A00] font-bold tracking-widest uppercase text-sm mb-4 block">what i've done</span>
                         <h2 className="text-5xl lg:text-6xl font-extrabold text-white leading-tight">Selected Works</h2>
                     </div>
-                    <a href="#" className="text-white hover:text-[#FF7A00] font-semibold border-b-2 border-[#FF7A00] pb-1 transition-colors">
-                        View All Projects
-                    </a>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
