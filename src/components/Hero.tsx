@@ -1,79 +1,68 @@
-import { ArrowRight, Download } from 'lucide-react';
-import image from '../assets/muhammad_eri.jpeg';
+import { iconUrl, profile, skills } from '../data';
 
 const Hero = () => {
-    return (
-        <section id="home" className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden bg-[#0F0F0F]">
-            {/* Background Glows */}
-            <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#FF7A00] opacity-[0.08] blur-[140px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#FF7A00] opacity-[0.05] blur-[120px] rounded-full pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
-
-            <div className="container mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
-                {/* Left Content */}
-                <div className="space-y-10">
-                    <div className="space-y-4">
-                        <span className="text-[#FF7A00] font-bold text-2xl tracking-wide block animate-fade-in">
-                            Hello, I'm
-                        </span>
-                        <h1 className="text-6xl md:text-7xl lg:text-[6rem] xl:text-[6rem] font-extrabold leading-[0.95] text-white tracking-tighter">
-                            Muhammad Eri Setyawan
-                        </h1>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-                            <span className="text-gradient">Full Stack Engineer</span>
-                        </h2>
-                    </div>
-
-                    <p className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed">
-                        Experienced Full-Stack Engineer with a proven track record of implementing production-ready AI systems and scalable web applications.
-                    </p>
-
-                    <div className="flex flex-wrap gap-6 pt-4">
-                        <a
-                            href="#portfolio"
-                            className="px-10 py-4 bg-[#FF7A00] hover:bg-[#e06b00] text-white font-bold rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(255,122,0,0.3)] hover:shadow-[0_12px_40px_rgba(255,122,0,0.4)] hover:-translate-y-1 flex items-center gap-3 text-lg"
-                        >
-                            My Work <ArrowRight size={22} />
-                        </a>
-                        <a
-                            href="https://drive.google.com/file/d/19Z8W4Zvs2hJSMt--YsN4lB9pJioca7dj/view?usp=drive_link"
-                            className="px-10 py-4 border-2 border-white/10 hover:border-[#FF7A00] text-white hover:text-[#FF7A00] font-bold rounded-full transition-all duration-300 flex items-center gap-3 bg-white/5 hover:bg-white/10 text-lg"
-                        >
-                            Download CV <Download size={22} />
-                        </a>
-                    </div>
-
-                    <div className="pt-12 flex gap-20 border-t border-white/10 mt-12">
-                        <div className="flex flex-col">
-                            <span className="text-5xl font-extrabold text-white tracking-tight">1+</span>
-                            <span className="text-gray-500 text-sm uppercase tracking-widest mt-2 font-semibold">Years Experience</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-5xl font-extrabold text-white tracking-tight">7+</span>
-                            <span className="text-gray-500 text-sm uppercase tracking-widest mt-2 font-semibold">Project Completed</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Image */}
-                <div className="relative flex justify-center lg:justify-end">
-                    {/* Glow behind image */}
-                    <div className="absolute inset-0 bg-[#FF7A00] opacity-10 blur-[80px] rounded-full scale-90"></div>
-
-
-                    <div className="relative z-10 w-full max-w-lg aspect-[4/5] rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#161616] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.5)] group">
-                        <img
-                            src={image}
-                            alt="Muhammad Eri Setyawan"
-                            className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700 scale-[1.02] group-hover:scale-100"
-                        />
-
-                        {/* Overlay Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/60 via-transparent to-transparent"></div>
-                    </div>
-                </div>
+  const run = skills.map((s) => (
+    <span key={s.name} className="tk">
+      {s.icon && <img src={iconUrl(s.icon, 'ecebe6')} alt="" width="16" height="16" loading="lazy" />}
+      {s.name}
+    </span>
+  ));
+  return (
+    <>
+      <section className="panel hero" id="home">
+        <div className="guides" aria-hidden="true">{Array.from({ length: 7 }, (_, i) => <span key={i} />)}</div>
+        <div className="meta caps">
+          <span>{profile.role}</span>
+          <span>{profile.location}</span>
+          <span>Working since 2023</span>
+        </div>
+        <div className="intro">
+          <div className="badge"><b data-count="2">2+</b><small>Years of<br />work experience</small></div>
+          <div className="sequence caps">
+            <div>Interface → API → Cluster</div>
+            <div className="muted">Front end to deployment</div>
+          </div>
+          <div className="lead">
+            <p>I'm Eri, a full-stack engineer at PT Infomedia Nusantara. I build AI voicebots and agent systems with React and NestJS, and deploy them on Kubernetes.</p>
+            <div className="actions">
+              <a className="btn caps" href="#work">See my work <span className="arrow">→</span></a>
+              <a className="btn dark caps" href={profile.cv} target="_blank" rel="noopener noreferrer">Download CV <span className="arrow">↗</span></a>
             </div>
-        </section>
-    );
+          </div>
+        </div>
+        <h1 className="title" data-fit data-reveal>
+          <span className="ln"><span>Muhammad Eri</span></span>
+          <span className="ln"><span>Setyawan</span></span>
+        </h1>
+        <div className="detail">
+          <div className="tag"><span className="caps small">Bogor / Indonesia</span></div>
+          <div className="art">
+            <div className="wire">
+              <svg viewBox="-100 -100 200 200" fill="none" stroke="#ecebe6" strokeWidth="1">
+                <polygon points="0,-90 80,0 0,90 -80,0" />
+                <polygon points="0,-60 52,0 0,60 -52,0" strokeDasharray="3 3" />
+                <polygon points="0,-30 26,0 0,30 -26,0" />
+                <line x1="0" y1="-90" x2="0" y2="90" /><line x1="-80" y1="0" x2="80" y2="0" />
+                <line x1="0" y1="-90" x2="-26" y2="0" /><line x1="0" y1="90" x2="26" y2="0" />
+              </svg>
+            </div>
+          </div>
+          <div className="status">
+            <h3>Right now</h3>
+            <div className="caps small">
+              <div className="leader-row"><span>Role</span><span className="dots" /><span>Full-stack engineer</span></div>
+              <div className="leader-row"><span>Company</span><span className="dots" /><span>Infomedia</span></div>
+              <div className="leader-row"><span>Focus</span><span className="dots" /><span>Voice AI & agents</span></div>
+              <div className="leader-row"><span>Stack</span><span className="dots" /><span>React · NestJS · GKE</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="ticker" aria-label="Skills">
+        <div className="marquee caps small">{run}{run}{run}</div>
+      </div>
+    </>
+  );
 };
 
 export default Hero;

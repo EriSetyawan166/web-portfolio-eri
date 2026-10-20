@@ -1,93 +1,48 @@
-import { BrainCircuit, Server, Mic } from 'lucide-react';
+import { useState } from 'react';
+import { services } from '../data';
 
 const Services = () => {
-    const services = [
-        {
-            icon: <Mic size={32} />,
-            title: 'Real-Time AI Voicebots',
-            description: 'Building voice assistants that sound human. Integration with LiveKit, Deepgram, and Google TTS for seamless conversational experiences.',
-            tags: ['LiveKit', 'Deepgram', 'WebRTC', 'Google Gemini', "Google TTS"],
-            highlight: false
-        },
-        {
-            icon: <BrainCircuit size={32} />,
-            title: 'LLM & AI Solutions',
-            description: 'Custom AI agents tailored for your business. From Document AI that "reads" your files to intelligent chatbots using RAG (Retrieval-Augmented Generation).',
-            tags: ['RAG', 'Pinecone', 'Gemini', 'Document AI', "Chat Bot"],
-            highlight: false
-        },
-        {
-            icon: <Server size={32} />,
-            title: 'Scalable Backend Systems',
-            description: 'Architecting robust, high-performance backend infrastructure. Specializing in NestJS and microservices to handle heavy loads and complex logic.',
-            tags: ['NestJS', 'Docker', 'Kubernetes', 'MySql'],
-            highlight: false
-        },
-    ];
-
-    return (
-        <section id="services" className="py-32 bg-[#0F0F0F] relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#FF7A00] opacity-[0.03] blur-[120px] rounded-full pointer-events-none"></div>
-
-            <div className="container mx-auto px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-2xl mx-auto mb-20">
-                    <span className="text-[#FF7A00] font-bold tracking-widest uppercase text-sm mb-4 block">What I Do</span>
-                    <h2 className="text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
-                        Specialized <br /> <span className="text-gradient">Engineering Services</span>
-                    </h2>
-                    <p className="text-gray-400 text-lg leading-relaxed">
-                        I don't just build websites; I engineer intelligent systems.
-                        Focusing on cutting-edge AI integration and robust backend architecture.
-                    </p>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className={`group relative p-8 rounded-[2rem] border transition-all duration-500 hover:-translate-y-2
-                                ${service.highlight
-                                    ? 'bg-[#1a1a1a] border-[#FF7A00]/50 shadow-[0_0_50px_rgba(255,122,0,0.1)]'
-                                    : 'bg-[#161616] border-white/5 hover:border-[#FF7A00]/30'
-                                }
-                            `}
-                        >
-                            {/* Hover Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#FF7A00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]"></div>
-
-                            <div className="relative z-10">
-                                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-300
-                                    ${service.highlight
-                                        ? 'bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/20'
-                                        : 'bg-white/5 text-[#FF7A00] group-hover:bg-[#FF7A00] group-hover:text-white'
-                                    }
-                                `}>
-                                    {service.icon}
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                                <p className="text-gray-400 leading-relaxed mb-8 min-h-[80px]">
-                                    {service.description}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2">
-                                    {service.tags.map((tag, i) => (
-                                        <span
-                                            key={i}
-                                            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/5 text-gray-400 border border-white/5 group-hover:border-white/10 transition-colors"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  const [active, setActive] = useState(0);
+  return (
+    <section className="services" id="services">
+      <div className="svc-left">
+        <div className="bar caps small"><span>What I work on</span><span>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></div>
+        <div className="content">
+          <div>
+            <h2 data-reveal>Skills</h2>
+            <p>Most of my recent work is AI products: voice, agents and retrieval. Underneath that it's regular full-stack work, with React, NestJS and the deployment pipeline.</p>
+          </div>
+          <div className="menu" role="tablist">
+            {services.map((s, i) => (
+              <button key={s.title} role="tab" aria-selected={active === i} className={active === i ? 'active' : ''}
+                onMouseEnter={() => setActive(i)} onClick={() => setActive(i)}>
+                <span>{s.short}</span><b>{s.title}</b><span>{s.side}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="svc-right">
+        <div className="icon">
+          <div className="wire">
+            <svg viewBox="-100 -100 200 200" fill="none" stroke="#ecebe6" strokeWidth=".8">
+              <circle r="90" /><ellipse rx="90" ry="30" /><ellipse rx="90" ry="62" /><ellipse rx="30" ry="90" /><ellipse rx="62" ry="90" /><line x1="0" y1="-90" x2="0" y2="90" />
+            </svg>
+          </div>
+        </div>
+        <div className="svc-detail">
+          {services.map((s, i) => (
+            <div key={s.title} className={`svc-item${active === i ? ' active' : ''}`} role="tabpanel" aria-hidden={active !== i}>
+              <div className="head"><span className="caps small">{s.tag}</span><h3 className="h3">{s.title}</h3></div>
+              <div className="points">
+                {s.points.map((p) => <div key={p.h}><h4>{p.h}</h4><p>{p.p}</p></div>)}
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Services;
